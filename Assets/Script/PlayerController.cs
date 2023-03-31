@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
 
     // 声明一个速度变量，
     public float speed;
+    public AudioSource jumpAudio,cherryAudio;
     // 声明一个跳跃强度
     public float jumpforce;
 
@@ -69,6 +70,7 @@ public class PlayerController : MonoBehaviour
         {
             // Y轴跳跃力设置为 jumpforce * Time.fixedDeltaTime
             rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.fixedDeltaTime);
+            jumpAudio.Play();
             //  设置跳跃动画
             anim.SetBool("jumping", true);
         }
@@ -118,6 +120,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.tag == "Collection")
         {
+            cherryAudio.Play();
             //销毁收集的樱桃
             Destroy(other.gameObject);
             Cherry += 1;
