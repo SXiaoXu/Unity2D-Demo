@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
         if (!isHurt)
         {
             movement();
-            // movementInApp();  
+            movementInApp();  
         }
 
         SwitchAnim();
