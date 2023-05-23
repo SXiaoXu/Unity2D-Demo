@@ -7,18 +7,21 @@ public class PlayerController : MonoBehaviour
 {
     // 声明一个刚体变量
     private Rigidbody2D rb;
+
     // 跑动起来的动画
     private Animator anim;
+
     // 碰撞体
     public Collider2D coll;
 
     //手机摇杆
     public Joystick joystick;
-   
 
-    // 声明一个速度变量，
+    // 声明一个速度变量
     public float speed;
-    public AudioSource jumpAudio,cherryAudio;
+    public AudioSource jumpAudio,
+        cherryAudio;
+
     // 声明一个跳跃强度
     public float jumpforce;
 
@@ -27,9 +30,8 @@ public class PlayerController : MonoBehaviour
 
     public int Cherry;
     public Text CherryNum;
-    private bool isHurt;//默认是 false
+    private bool isHurt; //默认是 false
 
-    // 游戏开始的时候调用
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -42,8 +44,10 @@ public class PlayerController : MonoBehaviour
     {
         if (!isHurt)
         {
+            //电脑键盘控制移动
             movement();
-            movementInApp();  
+            //手机摇杆控制移动
+            movementInApp();
         }
 
         SwitchAnim();
@@ -56,7 +60,7 @@ public class PlayerController : MonoBehaviour
         float horizontalmove = Input.GetAxis("Horizontal");
         //实现转身。返回三个值，0,1和-1。 -1左边移动，1右边移动，0不动。
         float facedirection = Input.GetAxisRaw("Horizontal");
-        //角色移动，让狐狸跑起来    
+        //角色移动，让狐狸跑起来
         if (horizontalmove != 0)
         {
             // rd.velocity = new Vector2(horizontalmove * speed, rd.velocity.y);
@@ -80,9 +84,10 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("jumping", true);
         }
     }
+
     //手机端用摇杆移动
-     void movementInApp()
-     {
+    void movementInApp()
+    {
         float horizontalmove = joystick.Horizontal;
         float facedirection = joystick.Horizontal;
         //角色移动
@@ -94,14 +99,13 @@ public class PlayerController : MonoBehaviour
         //左右方向跑的时候，狐狸切换朝向
         if (facedirection > 0f)
         {
-            transform.localScale = new Vector3(1,1,1);
+            transform.localScale = new Vector3(1, 1, 1);
         }
         if (facedirection < 0f)
         {
-            transform.localScale = new Vector3(-1,1,1);
+            transform.localScale = new Vector3(-1, 1, 1);
         }
-     
-        
+
         // APP 摇杆跳跃
         if (joystick.Vertical > 0.5f)
         {
@@ -111,7 +115,8 @@ public class PlayerController : MonoBehaviour
             //  设置跳跃动画
             anim.SetBool("jumping", true);
         }
-     }
+    }
+
     //  动画切换，跳跃，降落，停止
     void SwitchAnim()
     {
@@ -130,7 +135,6 @@ public class PlayerController : MonoBehaviour
                 anim.SetBool("jumping", false);
                 anim.SetBool("falling", true);
             }
-
         }
         else if (isHurt)
         {
@@ -143,15 +147,15 @@ public class PlayerController : MonoBehaviour
                 // anim.SetBool("idle", true);
                 isHurt = false;
             }
-
         }
-        //下降过程是否碰撞到地面 
+        //下降过程是否碰撞到地面
         else if (coll.IsTouchingLayers(ground))
         {
             anim.SetBool("falling", false);
             // anim.SetBool("idle", true);
         }
     }
+
     //收集物品
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -162,10 +166,8 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             Cherry += 1;
             CherryNum.text = Cherry.ToString();
-
         }
     }
-   
 
     //消灭敌人
     private void OnCollisionEnter2D(Collision2D other)
@@ -179,7 +181,7 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.fixedDeltaTime);
                 anim.SetBool("jumping", true);
             }
-            //左侧碰撞 
+            //左侧碰撞
             else if (transform.position.x < other.gameObject.transform.position.x)
             {
                 rb.velocity = new Vector2(-10, rb.velocity.y);
@@ -194,5 +196,3 @@ public class PlayerController : MonoBehaviour
         }
     }
 }
-
-
