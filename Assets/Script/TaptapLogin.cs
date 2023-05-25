@@ -24,8 +24,6 @@ public class TaptapLogin : MonoBehaviour
 
     public async void taptapLogin()
     {
-        // await TDSUser.Logout();
-
         var currentUser = await TDSUser.GetCurrent();
 
         if (null == currentUser)
