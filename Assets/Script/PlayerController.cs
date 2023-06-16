@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using TapTap.Billboard;
+
 public class PlayerController : MonoBehaviour
 {
     // 声明一个刚体变量
@@ -36,6 +38,12 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+
+        //展示跑马灯公告，在开发者中心设置只循环播放一次，
+        TapBillboard.StartFetchMarqueeData();
+
+
     }
 
     // Update is called once per frame，
