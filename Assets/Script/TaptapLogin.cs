@@ -34,13 +34,10 @@ public class TaptapLogin : MonoBehaviour
             .TapBillboardConfig(dimensionSet, templateType, billboardServerUrl)
             .ConfigBuilder();
         TapBootstrap.Init(config);
-        Debug.Log("测试一下");
 
 
         //应用一打开就展示一次公告
         OpenBillboard();
-
-
         //初始化防沉迷
         AntiAddictionInit();
 

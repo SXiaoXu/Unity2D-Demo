@@ -13,7 +13,8 @@ public class Pause : MonoBehaviour
     public GameObject pauseMenu;
     public AudioSource audioBgm;
 
-    public void PauseGame(){
+    public void PauseGame()
+    {
         //停止上报游戏时长
         AntiAddictionUIKit.LeaveGame();
 
@@ -25,16 +26,18 @@ public class Pause : MonoBehaviour
         Time.timeScale = 0f;
         audioBgm.Pause();
     }
-    public void ResumeGame(){
+    public void ResumeGame()
+    {
         //恢复上报游戏时长
         AntiAddictionUIKit.EnterGame();
-        
+
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         audioBgm.Play();
     }
-    public void GoBackToMenu(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex -1);
+    public void GoBackToMenu()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
 }

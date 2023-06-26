@@ -80,7 +80,6 @@ public class Menu : MonoBehaviour
         else
         {
             await TDSUser.Logout();
-            Debug.Log("已退出登录");
             //退出登录时，退出防沉迷
             AntiAddictionUIKit.Exit();
             //退出登录后返回登录页面：
@@ -111,6 +110,7 @@ public class Menu : MonoBehaviour
     public void openLeaderboard()
     {
         Debug.Log("打开排行榜");
+        SceneManager.LoadScene("Leaderboard");
     }
 
     public void OpenBillboard()
