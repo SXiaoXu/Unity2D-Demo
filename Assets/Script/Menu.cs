@@ -29,12 +29,16 @@ public class Menu : MonoBehaviour
 
         if (null != currentUser)
         {
-            nickname.text = currentUser["nickname"].ToString(); // 昵称
+            string nicknameStr = currentUser["nickname"].ToString();
+            nickname.text = nicknameStr;// 昵称
             string avatarPath = currentUser["avatar"].ToString(); // 头像
             Debug.Log("头像的 URL 是：" + avatarPath);
             //加载头像
             StartCoroutine(GetTexFromUnityWebRequest(avatarPath));
 
+            //修改内建账户的用户名为 TapTap 的昵称，不然 username 会显示为 ObjectId，这里要做修改是用于在排行榜中显示名字（username），如果这里不做修改，排行榜可以直接用 nickname 这个字段作为姓名。
+            currentUser["username"] = nicknameStr;
+            await currentUser.Save();
         }
     }
     public void SetAge()

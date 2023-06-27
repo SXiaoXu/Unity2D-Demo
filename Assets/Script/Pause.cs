@@ -7,6 +7,7 @@ using TapTap.Common;
 using TapTap.AntiAddiction;
 using TapTap.AntiAddiction.Model;
 using TapTap.Billboard;
+using LeanCloud.Storage;
 
 public class Pause : MonoBehaviour
 {
@@ -30,14 +31,37 @@ public class Pause : MonoBehaviour
     {
         //恢复上报游戏时长
         AntiAddictionUIKit.EnterGame();
-
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         audioBgm.Play();
+
     }
     public void GoBackToMenu()
     {
+        //退出游戏时，上传排行榜
+        updateResults();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+
+    //更新排行榜收集樱桃数量
+    public async void updateResults()
+    {
+        var currentUser = await TDSUser.GetCurrent();
+        if (null != currentUser)
+        {
+            string userIdentifier = currentUser.ObjectId;
+            int Cherry = PlayerPrefs.GetInt("CherryNum");
+            //假数据
+            Cherry = 20;
+            var statistic = new Dictionary<string, double>();
+            statistic["CherryNum"] = Cherry;
+            await LCLeaderboard.UpdateStatistics(currentUser, statistic);
+        }
+        else
+        {
+            //请先登录
+            Debug.Log("未登录");
+        }
     }
 
 }

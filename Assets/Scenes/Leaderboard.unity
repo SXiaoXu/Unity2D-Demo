@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 94143733}
   - component: {fileID: 94143732}
   m_Layer: 5
-  m_Name: Scroll View2
+  m_Name: ScrollView_level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -399,7 +399,7 @@ GameObject:
   - component: {fileID: 167370556}
   - component: {fileID: 167370555}
   m_Layer: 5
-  m_Name: avatar
+  m_Name: avatar2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -549,7 +549,7 @@ GameObject:
   - component: {fileID: 231503129}
   - component: {fileID: 231503128}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Text_rank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1570,7 +1570,7 @@ GameObject:
   - component: {fileID: 574601079}
   - component: {fileID: 574601078}
   m_Layer: 5
-  m_Name: Image1
+  m_Name: Image_score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1817,8 +1817,8 @@ GameObject:
   - component: {fileID: 657605508}
   - component: {fileID: 657605510}
   - component: {fileID: 657605509}
-  - component: {fileID: 657605511}
   - component: {fileID: 657605512}
+  - component: {fileID: 657605511}
   m_Layer: 5
   m_Name: Panel_List
   m_TagString: Untagged
@@ -1898,6 +1898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 435f431de243442f9a9b486cb6eba272, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  avatar: {fileID: 427947773}
   scrollView: {fileID: 1170679196}
 --- !u!114 &657605512
 MonoBehaviour:
@@ -1911,6 +1912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53f94cb5eb69441b08734a5b3d692377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  avatar: {fileID: 167370555}
   scrollView: {fileID: 94143732}
 --- !u!1 &693750015
 GameObject:
@@ -2731,7 +2733,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 338419640}
         m_TargetAssemblyTypeName: TabGroup, Assembly-CSharp
         m_MethodName: GoBackToMenu
         m_Mode: 1
@@ -2951,7 +2953,7 @@ GameObject:
   - component: {fileID: 1170679197}
   - component: {fileID: 1170679196}
   m_Layer: 5
-  m_Name: Scroll View
+  m_Name: ScrollView_score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3064,7 +3066,7 @@ GameObject:
   - component: {fileID: 1316699155}
   - component: {fileID: 1316699154}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Text_name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3147,7 +3149,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1549907748
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3496,7 +3498,7 @@ GameObject:
   - component: {fileID: 1715714869}
   - component: {fileID: 1715714868}
   m_Layer: 5
-  m_Name: Panel_tab1
+  m_Name: Panel_score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3889,7 +3891,7 @@ GameObject:
   - component: {fileID: 1821805657}
   - component: {fileID: 1821805656}
   m_Layer: 5
-  m_Name: Image2
+  m_Name: Image_level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4271,7 +4273,7 @@ GameObject:
   - component: {fileID: 2052534292}
   - component: {fileID: 2052534291}
   m_Layer: 5
-  m_Name: Panel_tab2
+  m_Name: Panel_level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

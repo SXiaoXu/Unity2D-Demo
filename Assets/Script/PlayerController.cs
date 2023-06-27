@@ -175,6 +175,8 @@ public class PlayerController : MonoBehaviour
             Cherry += 1;
             CherryNum.text = Cherry.ToString();
         }
+        //本地记录樱桃数量，用于排行榜
+        PlayerPrefs.SetInt("CherryNum",Cherry);
     }
 
     //消灭敌人
