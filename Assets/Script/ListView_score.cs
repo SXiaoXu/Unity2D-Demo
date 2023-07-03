@@ -71,11 +71,11 @@ public class ListView_score : MonoBehaviour
         var rankings = await leaderboard.GetResults(limit: 200, selectKeys: new List<string> { "username", "nickname" });
         foreach (var statistic in rankings)
         {
-            Debug.Log("排行榜的名称是：" + statistic.StatisticName);
-            Debug.Log("排行榜的分数是：" + statistic.Value);
-            Debug.Log("排名是：" + statistic.Rank);
-            Debug.Log("用户 ID 是：" + statistic.User.Username);
-            Debug.Log("用户昵称：" + statistic.User["nickname"]);
+            //Debug.Log("排行榜的名称是：" + statistic.StatisticName);
+            //Debug.Log("排行榜的分数是：" + statistic.Value);
+            //Debug.Log("排名是：" + statistic.Rank);
+            //Debug.Log("用户 ID 是：" + statistic.User.Username);
+            //Debug.Log("用户昵称：" + statistic.User["nickname"]);
 
             RankItemData data = new RankItemData();
             data.rank = statistic.Rank + 1;

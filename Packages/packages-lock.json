@@ -23,6 +23,15 @@
       "dependencies": {},
       "hash": "680db377aba88985d4cbf0e5d6db0bf2857d53dd"
     },
+    "com.taptap.tds.achievement": {
+      "version": "https://github.com/TapTap/TapAchievement-Unity.git#3.18.5",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.taptap.tds.bootstrap": "https://github.com/TapTap/TapBootstrap-Unity.git#3.18.5"
+      },
+      "hash": "6b80dc60d04aeafeac7ebda2559515eab34e73e6"
+    },
     "com.taptap.tds.billboard": {
       "version": "https://github.com/TapTap/TapBillboard-Unity.git#3.18.5",
       "depth": 0,
@@ -176,7 +185,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
-      "version": "2.0.11",
+      "version": "2.0.18",
       "depth": 0,
       "source": "registry",
       "dependencies": {

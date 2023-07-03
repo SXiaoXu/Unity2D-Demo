@@ -1,0 +1,4 @@
+<linker>
+  <assembly fullname="TapTap.Billboard.Runtime" preserve="all" />
+  <assembly fullname="TapTap.Billboard.Mobile.Runtime" preserve="all" />
+</linker>

@@ -1,17 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using TapTap.Bootstrap;
-using TapTap.Common;
-using UnityEngine.UI;
-using UnityEngine.Networking;
-using TapTap.AntiAddiction;
-using TapTap.AntiAddiction.Model;
-using TapTap.Billboard;
-
-public class Menu : MonoBehaviour
-{
+using System.Collections;using System.Collections.Generic;using UnityEngine;using UnityEngine.SceneManagement;using TapTap.Bootstrap;using TapTap.Common;using UnityEngine.UI;using UnityEngine.Networking;using TapTap.AntiAddiction;using TapTap.AntiAddiction.Model;using TapTap.Billboard;using TapTap.Moment;using TapTap.Achievement;public class Menu : MonoBehaviour, IAchievementCallback{
     public Text nickname;
     public Text age;
     public Image avatar;
@@ -20,6 +7,11 @@ public class Menu : MonoBehaviour
     {
         SetName();
         SetAge();
+
+        //设置内嵌动态
+        SetEmbeddedMoments();
+        //注册成就
+        InitTapAchievement();
 
     }
 
@@ -59,6 +51,164 @@ public class Menu : MonoBehaviour
         {
             // ageRange = 0,8,16 未成年
             age.text = "未成年";
+        }
+    }
+    public void SetEmbeddedMoments()
+    {
+        TapMoment.SetCallback((code, msg) =>
+              {
+                  Debug.Log(code + "---" + msg);
+                  if (code == 10000)
+                  {
+                      Debug.Log("动态发布成功");
+
+                  }
+                  else if (code == 10100)
+                  {
+                      Debug.Log("动态发布失败");
+                  }
+                  else if (code == 10200)
+                  {
+                      Debug.Log("关闭动态发布页面");
+                  }
+                  else if (code == 20000)
+                  {
+                      Debug.Log("获取新消息成功");
+                  }
+                  else if (code == 20100)
+                  {
+                      Debug.Log("获取新消息失败");
+                  }
+                  else if (code == 30000)
+                  {
+                      Debug.Log("动态页面打开");
+                  }
+                  else if (code == 30100)
+                  {
+                      Debug.Log("动态页面关闭");
+                  }
+                  else if (code == 50000)
+                  {
+                      Debug.Log("取消关闭所有动态界面（弹框点击取消按钮）");
+                  }
+                  else if (code == 50100)
+                  {
+                      Debug.Log("确认关闭所有动态界面（弹框点击确认按钮）");
+                  }
+                  else if (code == 60000)
+                  {
+                      Debug.Log("动态页面内登录成功");
+                  }
+                  else if (code == 70000)
+                  {
+                      Debug.Log("场景化入口回调");
+                  }
+              });
+        TapMoment.FetchNotification();
+
+    }
+
+
+    public void InitTapAchievement()
+    {
+        //注册监听回调
+        TapAchievement.RegisterCallback(this);
+        //初始化数据
+        TapAchievement.InitData();
+        // 获取本地数据
+        TapAchievement.GetLocalAllAchievementList((list, code) =>
+        {
+            if (code != null)
+            {
+                // 获取成就数据失败
+            }
+            else
+            {
+                // 获取成就数据成功
+            }
+        });
+        // 获取服务器数据
+        TapAchievement.FetchAllAchievementList((list, code) =>
+        {
+            if (code != null)
+            {
+                // 获取成就数据失败
+            }
+            else
+            {
+                // 获取成就数据成功
+            }
+        });
+
+        //获取当前用户成就数据
+
+        // 获取本地数据
+        TapAchievement.GetLocalUserAchievementList((list, code) =>
+        {
+            if (code != null)
+            {
+                // 获取成就数据失败
+            }
+            else
+            {
+                // 获取成就数据成功
+            }
+        });
+        // 获取服务器数据
+        TapAchievement.FetchUserAchievementList((list, code) =>
+        {
+            if (code != null)
+            {
+                // 获取成就数据失败
+            }
+            else
+            {
+                // 获取成就数据成功
+            }
+        });
+
+    }
+    //设置「已点击全部 TDS SDK 功能」的成就
+    public void SetTDSAchievements()
+
+    {
+        // name = openForum/openAchievement/openLeaderboard
+        string openForum = PlayerPrefs.GetString("openForum");
+        string openAchievement = PlayerPrefs.GetString("openAchievement");
+        string openLeaderboard = PlayerPrefs.GetString("openLeaderboard");
+
+        if (openForum == "opened" && openAchievement == "opened" && openLeaderboard == "opened")
+        {
+            // displayID 是在开发者中心中添加成就时自行设定的成就 ID
+            TapAchievement.Reach("TDS_ALL");
+        }
+
+    }
+
+    public void OnAchievementSDKInitSuccess()
+    {
+        Debug.Log("成就初始化成功");
+    }
+
+    public void OnAchievementSDKInitFail(TapError errorCode)
+    {
+        if (errorCode != null)
+        {
+            Debug.Log("成就初始化失败");
+        }
+    }
+
+    public void OnAchievementStatusUpdate(TapAchievementBean bean, TapError errorCode)
+    {
+        if (errorCode != null)
+        {
+            // 成就状态更新失败
+            return;
+        }
+
+        if (bean != null)
+        {
+            // 成就状态更新成功
         }
     }
 
@@ -102,12 +252,25 @@ public class Menu : MonoBehaviour
     public void openForum()
     {
         Debug.Log("打开动态");
+        // TapMoment.Open(Orientation.ORIENTATION_LANDSCAPE);
+
+        //记录已经打开过内嵌动态，用于实现「已点击全部 TDS SDK 功能」成就
+        SetTDSAchievements();
+        PlayerPrefs.SetString("openForum", "opened");
+
+
     }
 
     //跳转成就
     public void openAchievement()
     {
         Debug.Log("打开成就");
+        TapAchievement.ShowAchievementPage();
+
+        //记录已经打开过内嵌动态，用于实现「已点击全部 TDS SDK 功能」成就
+        SetTDSAchievements();
+        PlayerPrefs.SetString("openAchievement", "opened");
+
     }
 
     //跳转排行榜
@@ -115,6 +278,11 @@ public class Menu : MonoBehaviour
     {
         Debug.Log("打开排行榜");
         SceneManager.LoadScene("Leaderboard");
+
+        //记录已经打开过内嵌动态，用于实现「已点击全部 TDS SDK 功能」成就
+        SetTDSAchievements();
+        PlayerPrefs.SetString("openLeaderboard", "opened");
+
     }
 
     public void OpenBillboard()
@@ -189,5 +357,4 @@ public class Menu : MonoBehaviour
             avatar.SetNativeSize();
             Resources.UnloadUnusedAssets();
         }
-    }
-}
+    }}

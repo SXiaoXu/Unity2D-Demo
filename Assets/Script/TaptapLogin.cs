@@ -170,6 +170,7 @@ public class TaptapLogin : MonoBehaviour
                 var objectId = tdsUser.ObjectId; // 用户唯一标识
                 var nickname = tdsUser["nickname"]; // 昵称
                 var avatar = tdsUser["avatar"]; // 头像
+                
 
                 Debug.Log("当前登录成功的用户是：");
                 Debug.Log(nickname);

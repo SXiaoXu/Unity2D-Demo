@@ -8,6 +8,7 @@ using TapTap.AntiAddiction;
 using TapTap.AntiAddiction.Model;
 using TapTap.Billboard;
 using LeanCloud.Storage;
+using TapTap.Achievement;
 
 public class Pause : MonoBehaviour
 {
@@ -40,6 +41,8 @@ public class Pause : MonoBehaviour
     {
         //退出游戏时，上传排行榜
         updateResults();
+
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
@@ -51,15 +54,25 @@ public class Pause : MonoBehaviour
         {
             string userIdentifier = currentUser.ObjectId;
             int Cherry = PlayerPrefs.GetInt("CherryNum");
-            //假数据
-            Cherry = 20;
+
+            Debug.Log("本局游戏收集樱桃的数量是：" + Cherry);
             var statistic = new Dictionary<string, double>();
             statistic["CherryNum"] = Cherry;
             await LCLeaderboard.UpdateStatistics(currentUser, statistic);
+
+
+            //存储分步成就的增长步数
+            TapAchievement.GrowSteps("Cherry_ytcjz", Cherry);
+            TapAchievement.GrowSteps("Cherry_qlzf", Cherry);
+            TapAchievement.GrowSteps("Cherry_ytsgj", Cherry);
+            TapAchievement.GrowSteps("Cherry_ytdw", Cherry);
+
         }
         else
         {
             //请先登录
+
+            //zds pasdk
             Debug.Log("未登录");
         }
     }
