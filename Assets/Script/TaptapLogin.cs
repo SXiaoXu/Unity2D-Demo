@@ -25,7 +25,7 @@ public class TaptapLogin : MonoBehaviour
         var templateType = "navigate"; // 可选
         var billboardServerUrl = "https://tdsgonggao.goodluckin.top";
 
-
+        //初始化 SDK
         var config = new TapConfig.Builder()
             .ClientID("mlbfoduqiglbdugddp") // 必须，开发者中心对应 Client ID
             .ClientToken("3wROiubU8Dkv5c3h5K6bsawFYMjoSqBxXN0A55Hm") // 必须，开发者中心对应 Client Token
@@ -170,7 +170,7 @@ public class TaptapLogin : MonoBehaviour
                 var objectId = tdsUser.ObjectId; // 用户唯一标识
                 var nickname = tdsUser["nickname"]; // 昵称
                 var avatar = tdsUser["avatar"]; // 头像
-                
+
 
                 Debug.Log("当前登录成功的用户是：");
                 Debug.Log(nickname);
@@ -194,8 +194,8 @@ public class TaptapLogin : MonoBehaviour
         else
         {
             Debug.Log("已登录");
-            // 进入游戏
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            // 开启防沉迷流程
+            antiAddiction();
         }
     }
     public async void antiAddiction()

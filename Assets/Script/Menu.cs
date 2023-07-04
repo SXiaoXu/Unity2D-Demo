@@ -39,8 +39,8 @@ using System.Collections;using System.Collections.Generic;using UnityEngine;u
         int ageRange = AntiAddictionUIKit.AgeRange;
         if (ageRange == -1)
         {
-            //未认证
-            age.text = "未认证";
+            //未知
+            age.text = "未知年龄";
         }
         else if (ageRange == 18)
         {
