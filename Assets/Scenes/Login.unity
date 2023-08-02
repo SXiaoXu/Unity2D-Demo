@@ -314,7 +314,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 44094972198204cc78c2535d02d3e524, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 53dce244f97a84736a3be25edbf5f089, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -415,7 +415,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 338419641}
+      - m_Target: {fileID: 338419640}
         m_TargetAssemblyTypeName: TaptapLogin, Assembly-CSharp
         m_MethodName: OpenBillboard
         m_Mode: 1
@@ -477,7 +477,6 @@ GameObject:
   - component: {fileID: 338419639}
   - component: {fileID: 338419638}
   - component: {fileID: 338419640}
-  - component: {fileID: 338419641}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -546,18 +545,6 @@ CanvasRenderer:
   m_GameObject: {fileID: 338419636}
   m_CullTransparentMesh: 1
 --- !u!114 &338419640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 338419636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0811a0d0c01f54a59a20b19513e35bc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &338419641
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -652,7 +639,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 338419641}
+      - m_Target: {fileID: 338419640}
         m_TargetAssemblyTypeName: TaptapLogin, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
@@ -1012,7 +999,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 338419641}
+      - m_Target: {fileID: 338419640}
         m_TargetAssemblyTypeName: TaptapLogin, Assembly-CSharp
         m_MethodName: taptapLogin
         m_Mode: 1
